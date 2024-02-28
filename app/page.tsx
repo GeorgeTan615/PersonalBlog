@@ -3,9 +3,9 @@ import Link from "next/link"
 
 export default function Home() {
   return (
-    <div className="prose dark:prose-invert">
+    <div className="prose dark:prose-invert ">
       {allPosts.map((post) => (
-        <article key={post._id}>
+        <article key={post._id} className="text-sm">
           <Link href={post.slug}>
             <h2>{post.title}</h2>
           </Link>
