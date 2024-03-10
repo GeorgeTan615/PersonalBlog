@@ -8,7 +8,7 @@ import { ModeToggle } from "@/components/mode-toggle"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "George's Safe Space",
+  title: "George&apos;s Safe Space",
   description: "Personal site for blogging",
 }
 
@@ -33,7 +33,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
                   <Link href="/about">About</Link>
                 </nav>
               </div>
-              {/* <hr /> */}
             </header>
             <main className="mt-8">{children}</main>
           </div>
