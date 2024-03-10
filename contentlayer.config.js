@@ -43,7 +43,7 @@ export const Post = defineDocumentType(() => ({
     date: {
       type: "date",
       required: true,
-    },
+    }
   },
   computedFields,
 }))
