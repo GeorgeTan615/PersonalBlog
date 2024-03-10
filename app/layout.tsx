@@ -4,6 +4,8 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@/components/analytics"
 import { ModeToggle } from "@/components/mode-toggle"
+import { GitHubLogo } from "@/components/github-logo"
+import { LinkedInLogo } from "@/components/linkedin-logo"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -29,6 +31,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <Link href="/" className="font-semibold">George&apos;s Safe Space</Link>
                 <nav className="ml-auto font-medium space-x-6 flex items-center justify-between">
                   <ModeToggle />
+                  <LinkedInLogo link="https://www.linkedin.com/in/georgetanjs"/>
+                  <GitHubLogo link="https://github.com/GeorgeTan615"/>
                   <Link href="/">Home</Link>
                   <Link href="/about">About</Link>
                 </nav>
