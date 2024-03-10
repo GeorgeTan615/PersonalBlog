@@ -25,7 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="max-w-2xl mx-auto py-10 px-4">
             <header>
-              <div className="flex items-center justify-between my-5 text-sm">
+              <div className="flex items-center justify-between my-5 text-md">
                 <Link href="/" className="font-semibold">George&apos;s Safe Space</Link>
                 <nav className="ml-auto font-medium space-x-6 flex items-center justify-between">
                   <ModeToggle />

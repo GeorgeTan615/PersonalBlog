@@ -11,19 +11,11 @@ export default function Home() {
 
   return (
     <div className="prose dark:prose-invert">
-      {/* {allPosts.map((post) => (
-        <article key={post._id} className="flex justify-between items-center">
-          <Link href={post.slug} style={{ textDecoration: 'none' }}>
-            <div className="font-bold text-md">{post.title}</div>
-          </Link>
-          {post.date && <p className="text-xs text-right">{new Date(post.date).toDateString()}</p>}
-        </article>
-      ))} */}
       {
         allPosts.sort(sortFunction).map((post) => (
           <article key={post._id} className="flex justify-between items-center">
             <Link href={post.slug} style={{ textDecoration: 'none' }}>
-              <div className="font-bold text-md">{post.title}</div>
+              <div className="font-bold text-sm">{post.title}</div>
             </Link>
             {post.date && <p className="text-xs text-right">{new Date(post.date).toDateString()}</p>}
           </article>
