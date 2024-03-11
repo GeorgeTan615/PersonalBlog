@@ -10,7 +10,7 @@ export default function Home() {
   }
 
   return (
-    <div className="prose dark:prose-invert">
+    <div className="prose dark:prose-invert -space-y-4">
       {
         allPosts.sort(sortFunction).map((post) => (
           <article key={post._id} className="flex justify-between items-center">
