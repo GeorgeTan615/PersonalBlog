@@ -51,9 +51,9 @@ export default async function PostPage({ params }: PostProps) {
 
   return (
     <article className="py-6 prose dark:prose-invert">
-      <h1 className="mb-2">{post.title}</h1>
+      <h1 className="mb-3">{post.title}</h1>
       {post.description && (
-        <div className="flex justify-between items-center my-0">
+        <div className="flex justify-between items-center mb-3">
           <div className="text-md text-slate-700 dark:text-slate-200 ">
             {post.description}
           </div>
