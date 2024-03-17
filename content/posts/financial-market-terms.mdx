@@ -1,0 +1,71 @@
+---
+title: Financial Market Terms
+description: Financial Market knowledge that would be useful for work
+date: "2024-3-17"
+---
+
+Here is some basic research I've done to gain a better understanding of some financial market jargon/terms that might be useful in my work. Covering:
+- Market Maker
+- Over The Counter (OTC)
+- Derivatives
+	- Futures
+	- Perpetual Futures
+	- Options
+- Order Book
+
+## 1. Market Maker
+
+A market maker provides liquidity to the market by filling buy and sell orders and gaining profit from the bid-ask spread. Do keep in mind that this doesn't mean the market maker will make market orders because market orders result in an instant loss of the current spread. Market makers will put limit orders.
+
+**Bid** is the highest price someone is willing to buy the instrument at. **Ask** is the lowest price someone is willing to sell the instrument at. **Spread** is the difference between the bid and ask price.
+
+**Maker** is the one putting the buy/sell orders in the order book. **Taker** is the one putting the buy/sell orders to fill in the orders in the order book.
+
+## 2. Over The Counter (OTC)
+In terms of financial instruments, OTC means that you can't purchase it via regulated exchanges like NYSE, etc. You have to deal with a broker network to get the instrument. For stocks, it's mostly companies that don't meet the requirements needed to be listed on exchanges, that will only be available to trade OTC.
+
+In terms of crypto, it's trading in a private market, where there are no bid-ask prices like on exchange, instead, both parties just agree on a price and transact. Let’s say you want to buy 100 Bitcoins from an exchange, it's is quite unlikely that all 100 Bitcoins will come from the same seller, so the exchange has to consolidate several sellers to get the 100 Bitcoins, this may cause some small variations of the amount/price as you won't get all the bits at the same price in the end due to market volatility.
+
+## 3. Derivatives
+Derivatives allow you to get exposure to an underlying financial instrument’s price movements without actually owning the instrument itself. There are two types of derivatives, futures and options. There are also perpetual futures, which is a special futures contract for crypto.
+
+
+### Futures
+Futures is a contract that allows us to buy/sell a certain financial instrument at a certain price at a fixed date later, also known as the expiry date. At that set date, the contract owner is obligated to purchase the asset/deliver the asset at that price.
+
+There are also **long** and **short** positions for futures. If you buy a futures contract, it's a long position. If you sell a futures contract, it's a short position. If long, the price at that time > strike price, then you gain profit profit. If short, the price at that time < strike price, then you gain profit, and vice versa for losses.
+
+**Margin** is essentially leverage, it allows you to borrow money from exchanges or trading platforms without paying the full amount for the trades, this allows you to amplify your profits, and also losses.
+
+
+### Perpetual Futures
+Same as futures, but **without an expiry date**. Perpetual futures can also be held as long as you want until you close the position, or if you are forced into liquidation due to margin issues.
+
+### Options
+Same as futures, but the option holder **has the option/is not obligated** to purchase or sell an asset at a certain strike price up until the expiry date.
+
+Long call option
+
+- buying a call option, paying the option holder a premium, gaining the rights to purchase the asset at the strike price up til the expiry date
+
+Short call option
+
+- selling a call option, getting paid by the contract buyer a premium, obligated to deliver assets to the option holder if the holder wants to exercise the contract, up til the expiry date
+
+Long put option
+
+- buying a put option, paying the option holder a premium, gaining the rights to sell an asset at the strike price, up til the expiry date
+
+Short put option
+
+- selling a put option, getting paid by the contract buyer a premium, obligated to purchase the holder’s asset if the holder wants to exercise the contract, up til the expiry date
+
+
+## 4. Order Book
+An order book is a crucial tool for getting to know supply and demand in the market. the order book has the list of bids and asks for orders for a certain financial instrument in an exchange. each entry in the order book has the price of the order, amount, and total. 
+
+Order books are updated in real-time (book change), each entry in the order book is made by a limit order, and market orders would not be placed in the order book. By judging based on the number of bids or asks orders and the volume, we can determine if supply or demand is stronger in the market.
+
+There's also the term **level 1 data**, which refers to the latest bid and ask. **Level 2 data** refers to the full look of the current order book (aka depth data), where you can see all the quotes and trades at each price level
+
+There's also the term **depth**, which means the number of price levels available in the order book for that particular time.
