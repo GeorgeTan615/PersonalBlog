@@ -1,0 +1,33 @@
+---
+title: Unspent Transaction Outputs (UTXO)
+description: What is UTXO in Blockchain?
+date: 2024-06-30
+---
+
+## What is UTXO?
+
+Unspent Transaction Outputs (UTXO) is an accounting model used in the Bitcoin blockchain. It determines the way how transactions are processed, and also how wallet balances can be tracked. 
+
+UTXO basically refers to the amount of leftovers/change in a transaction. It’s similar to how we use cash in our daily life. Let’s say we have a $15.20 bill to pay, and we settle the bill with a $20 note, we then get a $4.80 change, this change is basically UTXO. With a $20 input, we get a $4.80 output. 
+
+By tracking all of the UTXOs for a certain address, we will then be able to get the total balance of the wallet address. UTXOs also have to be spent in full and can’t be subdivided, so for a user to make a transaction, the user’s UTXOs will be gathered such that the UTXO values are ≥ the amount that has to be made in the transaction. Upon making the transaction, a new UTXO of the value `UTXOs gathered - transaction amount` would then be created.
+
+There is also another model called [Account Model](https://www.binance.com/en/square/post/477478) which is commonly used in EVM-based blockchains.
+
+## Pros of UTXO
+
+### Privacy
+
+Users can configure every transaction to have a new address, and each UTXO will be sent to the new address. So it's harder to track the total balance of a certain user without knowing each of the addresses that the user owns.
+
+### Solves Double Spending Problem
+
+Each UTXO can only be used once in a transaction. Even if a UTXO is somehow used in multiple transactions, only 1 will be deemed valid and the other transactions will be rejected, thanks to the Bitcoin network’s nodes.
+
+## Cons of UTXO
+
+### Bitcoin Dust
+
+Bitcoin dust refers to a small amount of Bitcoin in UTXOs with values lesser than transaction fees. They are basically “dust” because they are unspendable on their own. The way to get rid of them is to gather them with other UTXOs and spend it, or perform a [Wallet Consolidation](https://cointelegraph.com/learn/bitcoin-utxo-model-how-to-manage-utcx) where one sends their Bitcoin Dusts back to themselves to a unified wallet with larger UTXOs. However, this involves making transactions, and transactions always have transaction fees, so this is another drawback as well.
+
+More details about Crypto Dust in general [here](https://cointelegraph.com/explained/what-is-a-crypto-dusting-attack-and-how-do-you-avoid-it).
