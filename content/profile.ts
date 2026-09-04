@@ -19,7 +19,7 @@ export type Role = {
 export type Project = {
   name: string
   blurb: string
-  tech: string
+  tags: string[]
   href?: string
 }
 
@@ -27,6 +27,10 @@ export const profile = {
   name: "George Tan",
   title: "Backend Engineer",
   location: "Malaysia",
+
+  /** The line under the name. Says what I do and what I care about. */
+  positioning:
+    "I build the backend systems behind quantitative research and crypto analytics. I'm just as interested in the finance as the engineering.",
 
   intro: [
     "I'm a backend engineer based in Malaysia. Right now I build data infrastructure at a quant research and crypto analytics firm.",
@@ -86,37 +90,50 @@ export const profile = {
       name: "SignalB",
       blurb:
         "Watches historical price data against strategies I define, and fires a signal when the conditions actually trip. Built so I'd stop eyeballing charts.",
-      tech: "Go",
+      tags: ["Go", "Market data", "Strategy engine"],
       href: "https://github.com/GeorgeTan615/SignalB",
     },
     {
       name: "FinvTracker",
       blurb:
         "Tracks investment performance across accounts in one place, instead of five apps and a spreadsheet.",
-      tech: "TypeScript",
+      tags: ["TypeScript", "Full-stack", "Postgres"],
       href: "https://github.com/GeorgeTan615/FinvTracker",
     },
     {
       name: "Simple Blockchain",
       blurb:
         "Blocks, hashing, proof of work and UTXOs, written from scratch to understand how a chain really works.",
-      tech: "Go",
+      tags: ["Go", "Proof of work", "UTXO"],
       href: "https://github.com/GeorgeTan615/Simple-Blockchain",
     },
     {
       name: "E-Commerce Backend",
       blurb:
         "Microservices in Java, built around isolating cart checkout so a slow dependency can't take the order path down with it.",
-      tech: "Java",
+      tags: ["Java", "Microservices", "MVC"],
       href: "https://github.com/GeorgeTan615/ECommerce-Backend",
     },
     {
       name: "Streaming Pipeline",
       blurb:
         "Real-time ingestion and processing on Kafka and Spark.",
-      tech: "Python",
+      tags: ["Python", "Kafka", "Spark"],
       href:
         "https://github.com/GeorgeTan615/Big-Data-Management-Processing-Application",
+    },
+  ],
+
+  skills: [
+    { group: "Languages", items: ["Go", "TypeScript", "Java", "Python"] },
+    { group: "Data", items: ["Kafka", "Spark", "PostgreSQL"] },
+    {
+      group: "Backend",
+      items: ["Microservices", "Data pipelines", "REST APIs", "Docker"],
+    },
+    {
+      group: "Finance",
+      items: ["Equity research", "Valuation", "Market data", "Blockchain"],
     },
   ],
 
