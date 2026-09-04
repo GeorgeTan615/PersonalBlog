@@ -1,19 +1,27 @@
 /**
- * Everything the site renders. One file, plain data.
+ * Everything the site renders. Sourced from George's 2026 resume.
  *
- * Anything left as "" is a fact I couldn't verify — the layout skips
- * empty fields, so nothing is invented and nothing looks broken.
+ * Emphasis convention: wrap a figure in [[...]] inside any bullet or blurb
+ * and it renders in the accent colour, so metrics catch the eye while
+ * scanning. See the Emphasise component in app/page.tsx.
  */
 
-export type Role = {
-  company: string
+export type Stint = {
   title: string
-  /** "2024", or "" if unknown. */
   from: string
-  /** "Present", a year, or "" if unknown. */
   to: string
-  blurb: string
+  bullets: string[]
+}
+
+export type Company = {
+  name: string
+  from: string
+  to: string
+  summary: string
+  stack: string[]
   href?: string
+  /** Roles held at this company, most recent first. */
+  stints: Stint[]
 }
 
 export type Project = {
@@ -25,64 +33,145 @@ export type Project = {
 
 export const profile = {
   name: "George Tan",
+  fullName: "George Tan Juan Sheng",
   title: "Backend Engineer",
   location: "Malaysia",
 
-  /** The line under the name. Says what I do and what I care about. */
   positioning:
-    "I build the backend systems behind quantitative research and crypto analytics. I'm just as interested in the finance as the engineering.",
+    "I build low-latency backend systems for market data and trading. Most recently I led the backend team behind OpenMarket, taking it from an in-house tool to a public platform with 80,000 monthly users.",
 
   intro: [
-    "I'm a backend engineer based in Malaysia. Right now I build data infrastructure at a quant research and crypto analytics firm.",
-    "Before that I wrote backend services for consumer fintech at MoneyLion. I studied Computer Science at Monash Malaysia.",
+    "I'm a backend engineer from Malaysia, with three years across fintech and crypto market data. I spent two and a half years at Trontal Group on OpenMarket, moving from engineer to leading a team of six, and before that I worked on fraud decisioning at MoneyLion.",
+    "The work I like is the unglamorous kind: profiling a service until it does five times the throughput, or working out why a database replication topology quietly became the bottleneck.",
+  ],
+
+  /** Real figures from the work below. Nothing invented. */
+  highlights: [
+    { value: "80K", label: "Monthly active users", note: "OpenMarket at handover" },
+    { value: "$1M", label: "Annual recurring revenue", note: "Scaled from in-house tool" },
+    { value: "500K/s", label: "Messages processed", note: "Live feed, up from 100K/s" },
+    { value: "6", label: "Engineers led", note: "Backend team, 2025–26" },
   ],
 
   interests: [
     {
       heading: "Finance is what I'd be reading about anyway",
-      body: "I'm properly interested in the financial industry: how markets work, how a company actually makes its money, and how to invest my own sensibly. I like taking a business apart. Reading the annual report, working through the numbers, deciding whether the price makes any sense. I've gone deep on a few, Chinese insurers especially.",
+      body: "I'm properly interested in the financial industry: how markets work, how a company actually makes its money, and how to invest my own sensibly. I like taking a business apart. Reading the annual report, working through the numbers, deciding whether the price makes any sense. I've gone deep on a few, Chinese insurers especially. It's also why market-data work suits me. I care what the numbers mean, not just how fast they move.",
     },
     {
-      heading: "And I like building things",
-      body: "Mostly backend. Go and TypeScript, services and data pipelines. Most of what I know came from building the smallest working version of something to see how it holds up. That's why I wrote a blockchain from scratch instead of reading about one.",
+      heading: "And I like making things fast",
+      body: "Most of my favourite work has been performance work. Replacing CGO with native Go and watching throughput go up fivefold. Pushing order-book maths into Postgres with Rust so it runs next to the data. Most of what I know came from building the smallest working version of something to see how it holds up, which is why I wrote a blockchain from scratch instead of reading about one.",
     },
   ],
 
-  roles: <Role[]>[
+  companies: <Company[]>[
     {
-      // TODO: swap in the real company name.
-      company: "Quant research & crypto analytics firm",
-      title: "Backend Engineer",
-      from: "2024",
-      to: "Present",
-      blurb:
-        "Data infrastructure and backend services: the pipelines and systems the research side runs on.",
+      name: "Trontal Group",
+      from: "Mar 2024",
+      to: "Aug 2026",
+      summary:
+        "Quant research and crypto analytics. I worked on OpenMarket, their market-data and trading platform, through four roles as it went from in-house tool to public product.",
+      stack: [
+        "Go",
+        "Rust",
+        "PostgreSQL / TimescaleDB",
+        "Kafka",
+        "Dragonfly",
+        "Kubernetes",
+        "AWS",
+      ],
+      stints: [
+        {
+          title: "Individual Contributor",
+          from: "Jun 2026",
+          to: "Aug 2026",
+          bullets: [
+            "Designed a low-latency Hyperliquid execution system with chain-side idempotency safeguards that prevented duplicate order execution.",
+            "Integrated Polymarket prediction markets into OpenMarket across market data, order flow and execution.",
+            "Hosted Hyperliquid non-validating nodes to retrieve and serve exclusive Hyperliquid data on OpenMarket.",
+          ],
+        },
+        {
+          title: "Lead Engineer",
+          from: "Aug 2025",
+          to: "Jun 2026",
+          bullets: [
+            "Led [[six backend engineers]] and scaled OpenMarket to [[80K MAU]], [[10K DAU]] and [[$1 million ARR]].",
+            "Scaled the real-time live feed from [[100K]] to [[500K messages/second]] by replacing CGO libraries with native Go, plus pooling, CPU profiling and concurrent workers.",
+            "Refactored the ingestion pipeline with concurrent, idempotent database writers, reaching [[200K messages/second]] at maximum throughput without sacrificing correctness.",
+            "Spearheaded a migration from PostgreSQL primary-replica to a multi-master architecture with application-side replication, after replication proved to be the bottleneck for high write volume.",
+            "Built a real-time alerting system for price and indicator triggers, delivering through browser, email and webhooks.",
+            "Tuned TimescaleDB queries and diagnosed continuous-aggregate duplication under concurrent refreshes, producing a reproducible case for the maintainers (TimescaleDB issue #9221).",
+          ],
+        },
+        {
+          title: "Senior Backend Engineer",
+          from: "Feb 2025",
+          to: "Aug 2025",
+          bullets: [
+            "Wrote custom PostgreSQL functions in Rust with pgrx so compute-intensive order-book operations run next to the data, improving performance by at least [[10x]].",
+            "Redesigned caching with Dragonfly, request coalescing and timestamp bucketing, raising the cache-hit ratio by [[20%]] and accelerating time-series queries.",
+          ],
+        },
+        {
+          title: "Backend Engineer II",
+          from: "Mar 2024",
+          to: "Feb 2025",
+          bullets: [
+            "Rebuilt cron-based order-book processing as a low-latency real-time service in Go and Rust, supporting [[100x more symbols]] and delivering updates within [[250ms]] of source changes.",
+            "Built an autonomous validation and gap-fill service that cross-checked upstream sources and backfilled missing or inconsistent time-series data.",
+            "Heavy Postgres query-plan analysis and CPU profiling across services to serve data with minimal latency.",
+          ],
+        },
+      ],
     },
     {
-      company: "MoneyLion",
-      title: "Software Engineer",
-      // TODO: your actual years here.
-      from: "",
-      to: "",
-      blurb:
-        "Backend services for a consumer fintech platform doing mobile banking and financial products at scale.",
+      name: "MoneyLion",
+      from: "Jun 2023",
+      to: "Mar 2024",
       href: "https://www.moneylion.com/about/",
-    },
-    {
-      // TODO: confirm the company name — I have it as both "Open Market"
-      // and "Supermarket" from our conversation. Also your title and years.
-      company: "Open Market",
-      title: "",
-      from: "",
-      to: "",
-      blurb: "",
+      summary:
+        "Consumer fintech. Backend work on the platform's shared fraud-decisioning systems.",
+      stack: [
+        "Java",
+        "Spring",
+        "Kafka",
+        "DocumentDB",
+        "Kubernetes",
+        "AWS",
+        "Datadog",
+      ],
+      stints: [
+        {
+          title: "Backend Engineer",
+          from: "Jun 2023",
+          to: "Mar 2024",
+          bullets: [
+            "Developed and maintained a shared fraud-decisioning platform used across product teams to combat account takeover, identity theft and chargebacks.",
+            "Built optimised backfill tooling with indexes, batch fetching and multithreading to sanitise sensitive data for [[14M+ users]], cutting monthly servicing costs by [[$8,422]].",
+            "Took part in biweekly 24/7 on-call rotations, troubleshooting outages, latency and error-rate incidents across backend services.",
+          ],
+        },
+      ],
     },
   ],
 
-  education: {
-    school: "Monash University Malaysia",
-    course: "BSc Computer Science",
-    year: "",
+  /** The product most of the Trontal work went into. */
+  openMarket: {
+    name: "OpenMarket",
+    tagline: "From in-house tool to public trading platform",
+    body: [
+      "OpenMarket began life as something Trontal built for itself. Over two and a half years I helped take it public and then led the backend team behind it: market data, order flow, execution, alerting, and the ingestion pipeline underneath all of it.",
+      "Most of the engineering problems were throughput and correctness at the same time. Feeds that can't drop messages, writes that can't double-count, and queries that have to come back fast enough to trade on.",
+    ],
+    facts: [
+      { k: "Scale at handover", v: "80K monthly users · 10K daily · $1M ARR" },
+      { k: "Live feed", v: "500K messages/second, up from 100K" },
+      { k: "Ingestion", v: "200K messages/second, concurrent and idempotent" },
+      { k: "Order book", v: "100x more symbols, updates within 250ms" },
+      { k: "Integrations", v: "Hyperliquid execution and self-hosted nodes, Polymarket" },
+      { k: "Storage", v: "PostgreSQL / TimescaleDB, multi-master, Dragonfly cache" },
+    ],
   },
 
   projects: <Project[]>[
@@ -108,33 +197,47 @@ export const profile = {
       href: "https://github.com/GeorgeTan615/Simple-Blockchain",
     },
     {
-      name: "E-Commerce Backend",
-      blurb:
-        "Microservices in Java, built around isolating cart checkout so a slow dependency can't take the order path down with it.",
-      tags: ["Java", "Microservices", "MVC"],
-      href: "https://github.com/GeorgeTan615/ECommerce-Backend",
-    },
-    {
       name: "Streaming Pipeline",
       blurb:
-        "Real-time ingestion and processing on Kafka and Spark.",
+        "Real-time ingestion and processing of event streams on Kafka and Spark.",
       tags: ["Python", "Kafka", "Spark"],
-      href:
-        "https://github.com/GeorgeTan615/Big-Data-Management-Processing-Application",
+      href: "https://github.com/GeorgeTan615/Big-Data-Management-Processing-Application",
     },
   ],
 
   skills: [
-    { group: "Languages", items: ["Go", "TypeScript", "Java", "Python"] },
-    { group: "Data", items: ["Kafka", "Spark", "PostgreSQL"] },
     {
-      group: "Backend",
-      items: ["Microservices", "Data pipelines", "REST APIs", "Docker"],
+      group: "Languages",
+      items: ["Go", "Rust", "SQL", "Java", "Python", "TypeScript", "Bash"],
     },
     {
-      group: "Finance",
-      items: ["Equity research", "Valuation", "Market data", "Blockchain"],
+      group: "Backend & data",
+      items: [
+        "PostgreSQL / TimescaleDB",
+        "Kafka",
+        "Dragonfly / Redis",
+        "DocumentDB / MongoDB",
+        "Spring",
+      ],
     },
+    {
+      group: "Cloud & observability",
+      items: ["AWS", "Kubernetes", "Docker", "Prometheus", "Grafana", "Datadog"],
+    },
+  ],
+
+  education: {
+    school: "Monash University Malaysia",
+    course: "Bachelor of Computer Science",
+    from: "2020",
+    to: "2022",
+    note: "CGPA 4.0 · WAM 87.51%",
+  },
+
+  achievements: [
+    { name: "Monash High Achiever Award", note: "Top 1% of the cohort" },
+    { name: "QuickHack 2022", note: "Champion" },
+    { name: "MDashHack 2022", note: "1st Runner-Up, 36 teams" },
   ],
 
   email: "georgetan.business@gmail.com",
