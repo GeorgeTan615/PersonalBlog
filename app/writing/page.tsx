@@ -53,7 +53,7 @@ export default function WritingPage() {
                 {year}
               </h2>
               <span className="font-mono text-2xs text-ink-3">
-                {posts.length}
+                {posts.length} {posts.length === 1 ? "essay" : "essays"}
               </span>
             </div>
 
